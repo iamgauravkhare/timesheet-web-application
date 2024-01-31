@@ -139,6 +139,7 @@ export const createTimesheetEntryAPI = async (
     setLoading(false);
     toast.dismiss(showToast);
     toast.error(error.response.data.message);
+    router.push("/employee-dashboard");
   }
 };
 

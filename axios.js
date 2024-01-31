@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:2000/api/v1",
+  baseURL: "https://time-sheet-server.onrender.com/api/v1",
+  // baseURL: "http://localhost:2000/api/v1",
   // withCredentials: true,
 });
 

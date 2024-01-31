@@ -18,7 +18,9 @@ const page = () => {
     <div className="flex justify-center">
       <div className="w-full max-w-[1260px] flex flex-col items-start gap-10 p-5 min-h-screen">
         {loading ? (
-          <span className="loader mt-24"></span>
+          <div className="w-full flex items-center justify-center">
+            <span className="loader mt-24"></span>
+          </div>
         ) : (
           <>
             {userData && (

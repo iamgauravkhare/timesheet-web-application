@@ -7,9 +7,11 @@ const page = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-full max-w-[1260px]  flex flex-col items-start gap-10 p-5 min-h-screen">
+      <div className="w-full max-w-[1260px] flex flex-col items-start gap-10 p-5 min-h-screen">
         {loading ? (
-          <span className="loader mt-24"></span>
+          <div className="w-full flex items-center justify-center">
+            <span className="loader mt-24"></span>
+          </div>
         ) : (
           <>
             {userData && (
@@ -25,7 +27,9 @@ const page = () => {
                           key={i}
                           className="flex flex-col items-start gap-5 text-[16px] rounded-md shadow-xl border p-5 overflow-hidden mb-10"
                         >
-                          <p>Entry Date - {e.date}</p>
+                          <p>
+                            Entry Date - {new Date(e.date).toLocaleDateString()}
+                          </p>
                           <p>Work Started At - {e.startTime}</p>
                           <p>Work Ended At - {e.endTime}</p>
                           <p>Total Hours Worked - {e.hoursWorked} Hr</p>

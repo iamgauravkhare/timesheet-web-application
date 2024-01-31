@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { alreadyLoggedIn } from "./apis";
+import axios from "axios";
 const { createContext, useState, useEffect } = require("react");
 
 export const centralData = createContext(null);
@@ -12,6 +13,17 @@ const Context = (props) => {
   const [showSignIn, setShowSignIn] = useState(true);
   const [showSignUp, setShowSignUp] = useState(false);
   const router = useRouter();
+
+  const serverStartUp = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://time-sheet-server.onrender.com/"
+      );
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setLoading(true);
@@ -28,6 +40,7 @@ const Context = (props) => {
         ? JSON.parse(localStorage.getItem("token"))
         : null
     );
+    serverStartUp();
   }, []);
 
   return (
