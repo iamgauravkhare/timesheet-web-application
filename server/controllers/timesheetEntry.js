@@ -4,7 +4,8 @@ exports.createEntry = async (req, res) => {
   try {
     // console.log("Create entry req payload - " + JSON.stringify(req.body));
     // console.log("Create entry token payload - " + JSON.stringify(req.user));
-    const { hoursWorked, startTime, endTime, manager } = req.body.formdata;
+    const { hoursWorked, startTime, endTime, manager, date } =
+      req.body.formdata;
 
     if (!hoursWorked || !startTime || !endTime || !manager) {
       return res.status(400).json({
@@ -16,7 +17,8 @@ exports.createEntry = async (req, res) => {
     const employeeData = await userModel.findOne({ _id: req.user.id });
 
     const currentDateTimeSheetAlreadyExist = await timesheetModel.findOne({
-      date: new Date(Date.now()).toDateString(),
+      _id: req.user.id,
+      date: date,
     });
 
     if (currentDateTimeSheetAlreadyExist) {
@@ -28,7 +30,7 @@ exports.createEntry = async (req, res) => {
 
     const responsePayload = await timesheetModel.create({
       hoursWorked,
-      date: new Date(Date.now()).toDateString(),
+      date: date,
       startTime,
       endTime,
       manager,

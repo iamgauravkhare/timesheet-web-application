@@ -14,8 +14,6 @@ exports.userData = async (req, res) => {
           },
         });
 
-      console.log(responsePayload);
-
       return res.status(200).json({
         payload: responsePayload,
         success: true,

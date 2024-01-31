@@ -12,6 +12,7 @@ const TimeSheet = () => {
     endTime: "",
     hoursWorked: "",
     manager: "",
+    date: new Date(Date.now()).toDateString(),
   });
 
   const {
@@ -45,6 +46,7 @@ const TimeSheet = () => {
       endTime: "",
       hoursWorked: "",
       manager: "",
+      date: "",
     });
   };
 
