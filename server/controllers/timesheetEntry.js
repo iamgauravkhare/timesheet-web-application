@@ -17,7 +17,7 @@ exports.createEntry = async (req, res) => {
     const employeeData = await userModel.findOne({ _id: req.user.id });
 
     const currentDateTimeSheetAlreadyExist = await timesheetModel.findOne({
-      _id: req.user.id,
+      employee: req.user.id,
       date: date,
     });
 
@@ -30,7 +30,7 @@ exports.createEntry = async (req, res) => {
 
     const responsePayload = await timesheetModel.create({
       hoursWorked,
-      date: date,
+      date,
       startTime,
       endTime,
       manager,
